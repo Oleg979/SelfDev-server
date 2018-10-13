@@ -8,7 +8,7 @@ var Task = require("../schemas/Task");
 
 var VerifyToken = require("./tokenVerification");
 
-router.post("/", VerifyToken, (req, res) => {
+router.post("/add", VerifyToken, (req, res) => {
   Task.create(
     {
       userId: req.userId,
@@ -26,16 +26,27 @@ router.post("/", VerifyToken, (req, res) => {
   );
 });
 
-router.get("/", VerifyToken, (req, res) => {
-  Task.find({ name: req.userId }, (err, tasks) => {
+router.get("/get", VerifyToken, (req, res) => {
+  Task.find({ userId: req.userId }, (err, tasks) => {
     if (err)
-      return res
-        .status(500)
-        .send({
-          success: false,
-          text: "There was a problem finding the tasks."
-        });
+      return res.status(500).send({
+        success: false,
+        text: "There was a problem finding the tasks."
+      });
     res.status(200).send({ success: true, tasks });
+  });
+});
+
+router.delete("/:id", (req, res) => {
+  Task.findByIdAndRemove(req.params.id, (err, task) => {
+    if (err)
+      return res.status(500).send({
+        success: false,
+        text: "There was a problem deleting the task."
+      });
+    res
+      .status(200)
+      .send({ success: true, text: "Task: " + task._id + " was deleted." });
   });
 });
 
