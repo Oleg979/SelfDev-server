@@ -13,5 +13,8 @@ app.use("/auth", authController);
 var pushController = require("./controllers/pushController");
 app.use("/push", pushController);
 
+var taskController = require("./controllers/taskController");
+app.use("/task", taskController);
+
 var port = process.env.PORT || 3000;
 app.listen(port, () => console.log("Express server listening on port " + port));

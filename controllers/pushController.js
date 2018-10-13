@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var bodyParser = require("body-parser");
 var axios = require("axios");
+var pushConfig = require("../config/pushConfig");
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -12,8 +13,7 @@ router.post("/send", (req, res) => {
     url: "https://api.push.expert/v1/pushSend/",
     headers: {
       "Content-Type": "application/json",
-      "x-secret-key": "7K9R3wMQVQamt5e%U&&4uiy$1jR9V*pP5foDYr$i",
-      "x-project-id": "9060d48b0ddbb5d3f61ac50ca8bb5b6d"
+      ...pushConfig
     },
     data: {
       title: req.body.title,
@@ -23,8 +23,8 @@ router.post("/send", (req, res) => {
         tokens: ["b3553990060f32d24c268380e0d78336a1140fdf"]
       }
     }
-  }).then(data => res.send("ok"));
-  console.log("push sended", req.body)
+  }).then(data => res.send({ success: true, result: "ok" }));
+  console.log("push sended", req.body);
 });
 
 module.exports = router;
