@@ -6,7 +6,8 @@
   "author": "SiltStrider",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -19,5 +20,9 @@
     "nodemailer": "^4.6.8",
     "push.js": "^1.0.7",
     "sendpulse-api": "^1.0.3"
+  },
+  "engines": {
+    "node": "8.11.1",
+    "npm": "5.7.1"
   }
 }
