@@ -16,9 +16,11 @@ router.post("/send", (req, res) => {
       ...pushConfig
     },
     data: {
-      title: req.body.title,
-      message: req.body.message,
-      url: req.body.url,
+      title: req.body.text,
+      message: req.body.text,
+      url: "http://localhost:3001/",
+      ttl: 30,
+      sendTime: req.body.time,
       target: {
         tokens: ["b3553990060f32d24c268380e0d78336a1140fdf"]
       }
