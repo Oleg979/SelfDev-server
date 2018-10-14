@@ -2,7 +2,10 @@ var express = require("express");
 var app = express();
 var cors = require("cors");
 app.use(cors());
+
 require("./config/dbConfig");
+require("./cron/morningMessage");
+require("./cron/eveningMesage");
 
 var userController = require("./controllers/userController");
 app.use("/users", userController);

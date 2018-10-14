@@ -2,7 +2,8 @@ var mongoose = require("mongoose");
 var TaskSchema = new mongoose.Schema({
   userId: String,
   text: String,
-  time: String
+  time: String,
+  creationDate: String
 });
 mongoose.model("Task", TaskSchema);
 

@@ -3,11 +3,12 @@ var router = express.Router();
 var bodyParser = require("body-parser");
 var axios = require("axios");
 var pushConfig = require("../config/pushConfig");
+var VerifyToken = require("./tokenVerification");
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-router.post("/send", (req, res) => {
+router.post("/send", VerifyToken, (req, res) => {
   axios({
     method: "post",
     url: "https://api.push.expert/v1/pushSend/",

@@ -7,13 +7,13 @@ router.use(bodyParser.json());
 var Task = require("../schemas/Task");
 
 var VerifyToken = require("./tokenVerification");
-
 router.post("/add", VerifyToken, (req, res) => {
   Task.create(
     {
       userId: req.userId,
       text: req.body.text,
-      time: req.body.time
+      time: req.body.time,
+      creationDate: `${new Date().getDate()} ${new Date().getMonth()} ${new Date().getFullYear()}`
     },
     (err, task) => {
       if (err)
@@ -27,14 +27,20 @@ router.post("/add", VerifyToken, (req, res) => {
 });
 
 router.get("/get", VerifyToken, (req, res) => {
-  Task.find({ userId: req.userId }, (err, tasks) => {
-    if (err)
-      return res.status(500).send({
-        success: false,
-        text: "There was a problem finding the tasks."
-      });
-    res.status(200).send({ success: true, tasks });
-  });
+  Task.find(
+    {
+      userId: req.userId,
+      creationDate: `${new Date().getDate()} ${new Date().getMonth()} ${new Date().getFullYear()}`
+    },
+    (err, tasks) => {
+      if (err)
+        return res.status(500).send({
+          success: false,
+          text: "There was a problem finding the tasks."
+        });
+      res.status(200).send({ success: true, tasks });
+    }
+  );
 });
 
 router.delete("/:id", (req, res) => {
