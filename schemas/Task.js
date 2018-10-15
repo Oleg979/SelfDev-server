@@ -3,7 +3,8 @@ var TaskSchema = new mongoose.Schema({
   userId: String,
   text: String,
   time: String,
-  creationDate: String
+  creationDate: String,
+  isChecked: Boolean
 });
 mongoose.model("Task", TaskSchema);
 

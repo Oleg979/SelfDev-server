@@ -13,6 +13,7 @@ router.post("/add", VerifyToken, (req, res) => {
       userId: req.userId,
       text: req.body.text,
       time: req.body.time,
+      isChecked: false,
       creationDate: `${new Date().getDate()} ${new Date().getMonth()} ${new Date().getFullYear()}`
     },
     (err, task) => {
@@ -43,7 +44,7 @@ router.get("/get", VerifyToken, (req, res) => {
   );
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", VerifyToken, (req, res) => {
   Task.findByIdAndRemove(req.params.id, (err, task) => {
     if (err)
       return res.status(500).send({
@@ -54,6 +55,26 @@ router.delete("/:id", (req, res) => {
       .status(200)
       .send({ success: true, text: "Task: " + task._id + " was deleted." });
   });
+});
+
+router.get("/check/:id", VerifyToken, (req, res) => {
+  Task.findByIdAndUpdate(
+    req.params.id,
+    { $set: { isChecked: true } },
+    (err, task) => {
+      res.status(200).send({ success: true, text: "Checked successfully" });
+    }
+  );
+});
+
+router.get("/uncheck/:id", VerifyToken, (req, res) => {
+  Task.findByIdAndUpdate(
+    req.params.id,
+    { $set: { isChecked: false } },
+    (err, task) => {
+      res.status(200).send({ success: true, text: "Unchecked successfully" });
+    }
+  );
 });
 
 module.exports = router;
