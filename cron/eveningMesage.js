@@ -4,6 +4,7 @@ var cronConfig = require("../config/cronConfig");
 var axios = require("axios");
 var Task = require("../schemas/Task");
 var User = require("../schemas/User");
+var Stat = require("../schemas/Stat");
 
 console.log("Evening message instantiation...");
 const job = new CronJob(
@@ -47,6 +48,20 @@ const job = new CronJob(
                   }
                     <h2>Now sleep well and good luck tomorrow :)</h2>`,
               "Good night from SelfDev"
+            );
+            Stat.create(
+              {
+                userId: user._id,
+                date: new Date().getTime(),
+                fullDate: `${new Date().getDate()} ${new Date().getMonth()} ${new Date().getFullYear()}`,
+                tasks,
+                all: tasks.length,
+                done: tasks.filter(task => task.isChecked).length
+              },
+              (err, stat) => {
+                if (err) console.log("Error while adding stats");
+                else console.log("Stat added");
+              }
             );
           }
         );
