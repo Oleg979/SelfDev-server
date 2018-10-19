@@ -13,6 +13,7 @@ router.post("/add", VerifyToken, (req, res) => {
       userId: req.userId,
       text: req.body.text,
       time: req.body.time,
+      tag: req.body.tag,
       isChecked: false,
       creationDate: `${new Date().getDate()} ${new Date().getMonth()} ${new Date().getFullYear()}`
     },

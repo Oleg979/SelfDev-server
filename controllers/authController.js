@@ -47,7 +47,7 @@ router.post("/register", (req, res) => {
             `<h1>Hello, ${
               req.body.name
             }!</h1> Thank you for registration! Your verification vode: <b>${random}</b>`,
-            "SelfDev"
+            `Your code: ${random}`
           );
 
           res.status(200).send({ auth: true, text: "Success!" });
