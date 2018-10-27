@@ -8,7 +8,7 @@ var Stat = require("../schemas/Stat");
 
 console.log("Evening message instantiation...");
 const job = new CronJob(
-  "00 30 23 * * *",
+  "00 36 21 * * *",
   function() {
     User.find({}, (err, users) => {
       if (err) return console.log("Evening message: Problem fetching users");
