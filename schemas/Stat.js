@@ -8,6 +8,7 @@ var StatSchema = new mongoose.Schema({
       userId: String,
       text: String,
       time: String,
+      tag: String,
       creationDate: String,
       isChecked: Boolean
     }
