@@ -12,7 +12,7 @@ const job = new CronJob(
   function() {
     User.find({}, (err, users) => {
       if (err) return console.log("Evening message: Problem fetching users");
-      users.forEach(user => {
+      users.forEach(user => { 
         Task.find(
           {
             userId: user._id,
@@ -21,7 +21,7 @@ const job = new CronJob(
           (err, tasks) => {
             if (err)
               return sendMail(
-                user.email,
+                user.email, 
                 `<h1>Hello, ${user.name}!</h1> This is your evening message`,
                 "SelfDev"
               );

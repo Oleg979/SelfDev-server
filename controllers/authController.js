@@ -97,6 +97,19 @@ router.post("/login", (req, res) => {
       expiresIn: "1h"
     });
 
+    var push = req.body.push;
+    if (push) {
+      User.findOneAndUpdate(
+        { email: req.body.email },
+        {
+          $set: { pushToken: push }
+        },
+        (err1, user1) => {
+          console.log(push + " added");
+        }
+      );
+    }
+
     res.status(200).send({ auth: true, token });
   });
 });
