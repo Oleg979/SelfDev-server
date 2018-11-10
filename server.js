@@ -14,6 +14,8 @@ setInterval(() => {
   axios.get("https://self-develop.herokuapp.com");
 }, 60000);
 
+app.get("/", (req, res) => res.send("Working..."));
+
 var userController = require("./controllers/userController");
 app.use("/users", userController);
 
