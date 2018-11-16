@@ -6,7 +6,7 @@ var User = require("../schemas/User");
 
 console.log("Morning message instantiation...");
 const job = new CronJob(
-  "00 30 7 * * *",
+  "00 08 10 * * *",
   function() {
     User.find({}, (err, users) => {
       if (err)
