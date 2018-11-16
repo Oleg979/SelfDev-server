@@ -6,7 +6,7 @@ var User = require("../schemas/User");
 
 console.log("Morning message instantiation...");
 const job = new CronJob(
-  "00 14 10 * * *",
+  "00 16 10 * * *",
   function() {
     User.find({}, (err, users) => {
       if (err)
@@ -17,13 +17,13 @@ const job = new CronJob(
             "https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en"
           )
           .then(data => {
-          console.log(data)
+          console.log(data.data)
             sendMail(
               user.email,
               `<h1>Goor morning, ${
                 user.name
               }!</h1> This is your inspirational quote for this morning:
-            <h2><i>${data.quoteText}</i> ©${data.quoteAuthor}</h2>
+            <h2><i>${data.data.quoteText}</i> ©${data.data.quoteAuthor}</h2>
             <h2>Have a great day :)</h2>`,
               "Good morning from SelfDev"
             );
