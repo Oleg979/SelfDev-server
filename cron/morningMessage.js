@@ -6,7 +6,7 @@ var User = require("../schemas/User");
 
 console.log("Morning message instantiation...");
 const job = new CronJob(
-  "00 11 10 * * *",
+  "00 14 10 * * *",
   function() {
     User.find({}, (err, users) => {
       if (err)
@@ -17,6 +17,7 @@ const job = new CronJob(
             "https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en"
           )
           .then(data => {
+          console.log(data)
             sendMail(
               user.email,
               `<h1>Goor morning, ${
