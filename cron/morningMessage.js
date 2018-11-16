@@ -22,7 +22,7 @@ const job = new CronJob(
               `<h1>Goor morning, ${
                 user.name
               }!</h1> This is your inspirational quote for this morning:
-            <h2><i>${data.data.quoteText}</i> ©${data.data.quoteAuthor}</h2>
+            <h2><i>${data.quoteText}</i> ©${data.quoteAuthor}</h2>
             <h2>Have a great day :)</h2>`,
               "Good morning from SelfDev"
             );
