@@ -21,6 +21,20 @@ router.post("/send", VerifyToken, (req, res) => {
         if (err)
           return console.log("Email push message: Problem fetching users");
 
+        axios({
+          method: "post",
+          url: "https://exp.host/--/api/v2/push/send",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          data: {
+            to: user.mobileToken,
+            title: "You have a task!",
+            body: `Don't forget to ${req.body.text}`,
+            data: { message: `Don't forget to ${req.body.text}` }
+          }
+        });
+
         sendMail(
           user.email,
           `<h1>Hello, ${user.name}!</h1> It's time for <i>${
