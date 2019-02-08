@@ -115,7 +115,7 @@ router.post("/login", (req, res) => {
       User.findOneAndUpdate(
         { email: req.body.email },
         {
-          $set: { mobile }
+          $set: { mobileToken: mobile }
         },
         (err1, user1) => {
           console.log(mobile + " added");
