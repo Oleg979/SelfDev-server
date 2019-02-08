@@ -17,6 +17,7 @@ const job = new CronJob(
             "https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en"
           )
           .then(data => {
+          console.log(data.data)
             sendMail(
               user.email,
               `<h1>Goor morning, ${

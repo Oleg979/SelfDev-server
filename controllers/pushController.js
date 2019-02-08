@@ -48,7 +48,7 @@ router.post("/send", VerifyToken, (req, res) => {
       data: {
         title: req.body.text,
         message: req.body.text,
-        url: "http://localhost:3001/",
+        url: "https://self-dev.stackblitz.io",
         ttl: 30,
         sendTime: req.body.time,
         target: {

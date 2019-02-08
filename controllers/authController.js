@@ -94,7 +94,7 @@ router.post("/login", (req, res) => {
         .send({ auth: false, token: null, text: "Email is not verified" });
 
     var token = jwt.sign({ id: user._id }, config.secret, {
-      expiresIn: "1h"
+      expiresIn: "24h"
     });
 
     var push = req.body.push;
