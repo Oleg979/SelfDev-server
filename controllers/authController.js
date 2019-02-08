@@ -111,7 +111,7 @@ router.post("/login", (req, res) => {
     }
 
     var mobile = req.body.mobileToken;
-    if (push) {
+    if (mobile) {
       User.findOneAndUpdate(
         { email: req.body.email },
         {
