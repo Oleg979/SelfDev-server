@@ -110,6 +110,19 @@ router.post("/login", (req, res) => {
       );
     }
 
+    var mobile = req.body.mobileToken;
+    if (push) {
+      User.findOneAndUpdate(
+        { email: req.body.email },
+        {
+          $set: { mobileToken }
+        },
+        (err1, user1) => {
+          console.log(mobileToken + " added");
+        }
+      );
+    }
+
     res.status(200).send({ auth: true, token });
   });
 });

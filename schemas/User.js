@@ -5,7 +5,8 @@ var UserSchema = new mongoose.Schema({
   password: String,
   isEmailVerified: Boolean,
   verificationCode: String,
-  pushToken: String
+  pushToken: String,
+  mobileToken: String
 });
 mongoose.model("User", UserSchema);
 

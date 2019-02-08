@@ -6,6 +6,8 @@ var Task = require("../schemas/Task");
 var User = require("../schemas/User");
 var Stat = require("../schemas/Stat");
 
+
+
 console.log("Evening message instantiation...");
 const job = new CronJob(
   "00 30 23 * * *",
