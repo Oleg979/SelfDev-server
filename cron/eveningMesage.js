@@ -71,7 +71,7 @@ var processStat = function() {
 console.log("Evening message instantiation...");
 const job = new CronJob(
   "00 30 23 * * *",
-  processStat
+  processStat,
   null,
   false,
   cronConfig.timeZone

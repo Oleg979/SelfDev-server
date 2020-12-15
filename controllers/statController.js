@@ -28,7 +28,7 @@ router.get("/get", VerifyToken, (req, res) => {
 });
 
 router.get("/trigger", VerifyToken, (req, res) => {
-  processStat()
+  processStat();
   res.status(200).send({ success: true });
 });
 
