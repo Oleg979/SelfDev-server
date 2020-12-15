@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var bodyParser = require("body-parser");
+var processStat = require("../cron/eveningMesage");
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -24,6 +25,11 @@ router.get("/get", VerifyToken, (req, res) => {
       res.status(200).send({ success: true, stats });
     }
   );
+});
+
+router.get("/trigger", VerifyToken, (req, res) => {
+  processStat()
+  res.status(200).send({ success: true });
 });
 
 module.exports = router;

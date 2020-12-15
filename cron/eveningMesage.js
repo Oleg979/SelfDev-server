@@ -6,12 +6,7 @@ var Task = require("../schemas/Task");
 var User = require("../schemas/User");
 var Stat = require("../schemas/Stat");
 
-
-
-console.log("Evening message instantiation...");
-const job = new CronJob(
-  "00 30 23 * * *",
-  function() {
+var processStat = function() {
     User.find({}, (err, users) => {
       if (err) return console.log("Evening message: Problem fetching users");
       users.forEach(user => { 
@@ -71,10 +66,17 @@ const job = new CronJob(
       });
       console.log("Evening message fired");
     });
-  },
+  };
+
+console.log("Evening message instantiation...");
+const job = new CronJob(
+  "00 30 23 * * *",
+  processStat
   null,
   false,
   cronConfig.timeZone
 );
 console.log("Evening message instantiation OK");
 job.start();
+
+module.exports = processStat;
